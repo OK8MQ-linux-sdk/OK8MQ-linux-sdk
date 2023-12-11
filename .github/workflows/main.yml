@@ -63,13 +63,9 @@ jobs:
         rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
       working-directory: .github/scripts
 
-    - name: Set up compiler in PATH
+    - name: Set up compiler in PATH and build
       run: |
         . .github/scripts/environment-setup-aarch64-poky-linux
-      working-directory: .
-
-    - name: Build
-      run: |
         . environment-4gddr-setup-sourcetree
         ls -lh
         make
