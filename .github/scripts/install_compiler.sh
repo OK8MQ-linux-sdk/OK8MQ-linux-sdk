@@ -1,5 +1,6 @@
 #!/usr/bin/expect
 
+pwd
 # 启动要执行的命令，这里假设是执行 ./install_compiler.sh
 spawn ../../temp/╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
 

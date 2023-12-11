@@ -40,14 +40,16 @@ jobs:
         cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux
         unzip cross-compiler-aarch64-poky-linux
         chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        sudo apt-get install expect -y
+        chmod +x ../.github/scripts/install_compiler.sh
+        ../.github/scripts/install_compiler.sh
+
       working-directory: ./temp
 
-    - name: Install custom compiler
-      run: |
-        sudo apt-get install expect -y
-        chmod +x scripts/install_compiler.sh
-        ./scripts/install_compiler.sh
-      working-directory: .github
+    # - name: Install custom compiler
+    #   run: |
+    #     ./scripts/install_compiler.sh
+    #   working-directory: .github
     
     - name: Delete compiler
       run: |
