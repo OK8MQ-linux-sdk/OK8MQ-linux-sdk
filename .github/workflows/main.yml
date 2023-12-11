@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: List files in working directory
       run: ls -R
-      working-directory: ./.github
+      working-directory: .github
 
     - name: Checkout code with submodules
       uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
         sudo apt-get install expect -y
         chmod +x scripts/install_compiler.sh
         ./scripts/install_compiler.sh
-      working-directory: ./.github
+      working-directory: .github
     
     - name: Delete compiler
       run: |
