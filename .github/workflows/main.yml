@@ -58,10 +58,10 @@ jobs:
     #     ./install_compiler.sh
     #   working-directory: .github/scripts
     
-    - name: Delete compiler
-      run: |
-        rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
-      working-directory: .github/scripts
+    # - name: Delete compiler
+    #   run: |
+    #     rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
+    #   working-directory: .github/scripts
 
     - name: Set up compiler in PATH
       run: |
