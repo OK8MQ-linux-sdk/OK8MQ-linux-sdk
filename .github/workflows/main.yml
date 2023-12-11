@@ -35,7 +35,7 @@ jobs:
     - name: Check gcc version
       run: |
         gcc --version
-        
+
 
     - name: Download install_compiler.sh
       run: |
@@ -48,7 +48,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install expect -y
         sudo apt-get install openssh-server vim git fakeroot make automake \
-                         autoconf libtool libssl-dev bc dosfstools mtools parted iproute2 gcc kmod
+                         autoconf libtool libssl-dev bc dosfstools mtools parted iproute2 gcc kmod -y
+        sudo apt-get install gcc-9 -y
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 100
         chmod +x ./install_compiler.sh
 
       working-directory: .github/scripts
