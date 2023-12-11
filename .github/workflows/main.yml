@@ -31,15 +31,13 @@ jobs:
 
     - name: Download install_compiler.sh
       run: |
-        curl -o temp/aarch64-poky-linux-aa https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
-        curl -o temp/aarch64-poky-linux-ab https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
-        curl -o temp/aarch64-poky-linux-ac https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
-        cd temp
-        cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux.zip
-        unzip cross-compiler-aarch64-poky-linux.zip
-        cd ..
-        chmod +x temp/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
-      working-directory: .
+        curl -o aarch64-poky-linux-aa https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
+        curl -o aarch64-poky-linux-ab https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
+        curl -o aarch64-poky-linux-ac https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
+        cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux
+        unzip cross-compiler-aarch64-poky-linux
+        chmod +x tfsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+      working-directory: ./temp
 
     - name: Install custom compiler
       run: |
