@@ -17,4 +17,6 @@ expect -re "Proceed .*"
 send "y\r"
 
 # 等待命令执行完成
-expect eof
+wait
+
+puts "Aarch64-poky-linux-gcc has finished installation."
