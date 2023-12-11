@@ -29,6 +29,9 @@ jobs:
       run: mkdir -p temp
       working-directory: .
 
+    - name: List files in working directory
+      run: ls -R
+      
     - name: Download install_compiler.sh
       run: |
         wget https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
