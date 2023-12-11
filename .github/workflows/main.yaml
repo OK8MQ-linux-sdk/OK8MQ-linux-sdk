@@ -1,0 +1,62 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout code with submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive  # 递归克隆子模块
+
+    # - name: Run submodule check
+    #   run: |
+    #     chmod +x check_submodule.sh
+    #     bash check_submodule.sh
+    #     if [[ "$SUBMODULE_UPDATED" == "true" ]]; then
+    #       # 在这里添加触发 CI/CD 流程的命令
+    #     fi
+    #   env:
+    #     SUBMODULE_UPDATED: ${{ env.SUBMODULE_UPDATED }}
+
+    - name: Create temporary directory
+      run: mkdir -p temp
+      working-directory: .
+
+    - name: Download install_compiler.sh
+      run: |
+        curl -o temp/install_compiler.sh https://example.com/install_compiler.sh
+        curl -o temp/aarch64-poky-linux-aa https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
+        curl -o temp/aarch64-poky-linux-ab https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
+        curl -o temp/aarch64-poky-linux-ac https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
+        cd temp
+        cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux.zip
+        unzip cross-compiler-aarch64-poky-linux.zip
+        cd ..
+        chmod +x temp/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+      working-directory: .
+
+    - name: Install custom compiler
+      run: |
+        yes | ./temp/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        rm -rf temp  # 删除安装文件
+      working-directory: .
+
+    - name: Set up compiler in PATH
+      run: |
+        . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
+        . environment-4gddr-setup-sourcetree
+      working-directory: .
+
+    - name: Build
+      run: |
+        make
+      working-directory: .
+
+    # 添加其他测试、部署等步骤，根据需要进行扩展
