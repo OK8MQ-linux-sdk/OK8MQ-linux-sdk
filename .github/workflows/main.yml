@@ -31,7 +31,6 @@ jobs:
 
     - name: Download install_compiler.sh
       run: |
-        curl -o temp/install_compiler.sh https://example.com/install_compiler.sh
         curl -o temp/aarch64-poky-linux-aa https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
         curl -o temp/aarch64-poky-linux-ab https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
         curl -o temp/aarch64-poky-linux-ac https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
