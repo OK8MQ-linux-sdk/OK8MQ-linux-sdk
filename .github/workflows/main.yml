@@ -41,8 +41,12 @@ jobs:
 
     - name: Install custom compiler
       run: |
-        chmod +x install_compiler.sh
-        ./install_compiler.sh
+        sudo apt-get install expect -y
+        chmod +x scripts/install_compiler.sh
+        ./scripts/install_compiler.sh
+
+    - name: Delete compiler
+      run: |
         rm -rf temp  # 删除安装文件
       working-directory: .
 
