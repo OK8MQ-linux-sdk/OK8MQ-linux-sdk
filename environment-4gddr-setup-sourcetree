@@ -1,0 +1,19 @@
+export MAKE_JOBS=`cat /proc/cpuinfo | grep "processor" | wc -l`
+export SDK_PATH="$PWD"
+export LINUXKERNEL_INSTALL_DIR=$SDK_PATH/OK8MQ-linux-kernel
+export LINUX_DEFCONFIG=imx_v8_defconfig
+export INSTALL_MOD_STRIP=1
+export DESTDIR=$SDK_PATH/OK8MQ-linux-fs/OK8MQ-linux-fs
+export UBOOT_INSTALL_DIR=$SDK_PATH/OK8MQ-linux-uboot
+export UBOOT_DEFCONFIG=imx8mq_evk_4g_defconfig
+export UBOOT_QSPI_DEFCONFIG=imx8mq_evk_fspi_defconfig
+
+export CMDBINDIR=$DESTDIR/usr/bin/cmd
+export INSTALL_ROOT=$DESTDIR
+
+if [ -e $SDK_PATH/images/flash_sd_emmc_4g.bin ]
+then
+        cp $SDK_PATH/images/flash_sd_emmc_4g.bin $SDK_PATH/images/flash_sd_emmc.bin
+        echo "using 4GB DDR4 u-boot"
+fi
+cp images/flash_sd_emmc_4g.bin images/flash_sd_emmc.bin

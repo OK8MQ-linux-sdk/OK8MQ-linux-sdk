@@ -1,0 +1,15 @@
+[submodule "OK8MQ-linux-kernel"]
+	path = OK8MQ-linux-kernel
+	url = git@github.com:OK8MQ-linux-sdk/OK8MQ-linux-kernel.git
+[submodule "appsrc"]
+	path = appsrc
+	url = git@github.com:OK8MQ-linux-sdk/appsrc.git
+[submodule "tools"]
+	path = tools
+	url = git@github.com:OK8MQ-linux-sdk/tools.git
+[submodule "images"]
+	path = images
+	url = git@github.com:OK8MQ-linux-sdk/images.git
+[submodule "OK8MQ-linux-fs"]
+	path = OK8MQ-linux-fs
+	url = git@github.com:OK8MQ-linux-sdk/OK8MQ-linux-fs.git
