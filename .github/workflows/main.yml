@@ -36,12 +36,12 @@ jobs:
         wget https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
         cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux
         unzip cross-compiler-aarch64-poky-linux
-        chmod +x tfsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
       working-directory: ./temp
 
     - name: Install custom compiler
       run: |
-        yes | ./temp/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        yes | ./temp/╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
         rm -rf temp  # 删除安装文件
       working-directory: .
 
