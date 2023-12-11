@@ -41,7 +41,8 @@ jobs:
 
     - name: Install custom compiler
       run: |
-        yes | ./temp/╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        chmod +x install_compiler.sh
+        ./install_compiler.sh
         rm -rf temp  # 删除安装文件
       working-directory: .
 
