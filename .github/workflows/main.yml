@@ -42,6 +42,11 @@ jobs:
         chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
         sudo apt-get install expect -y
         chmod +x ./install_compiler.sh
+
+      working-directory: .github/scripts
+
+    - name: Exec install_compiler.sh
+      run: |
         ./install_compiler.sh
 
       working-directory: .github/scripts
