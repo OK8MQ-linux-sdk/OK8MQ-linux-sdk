@@ -26,9 +26,9 @@ jobs:
     #   env:
     #     SUBMODULE_UPDATED: ${{ env.SUBMODULE_UPDATED }}
 
-    - name: Create temporary directory
-      run: mkdir -p temp
-      working-directory: .
+    # - name: Create temporary directory
+    #   run: mkdir -p temp
+    #   working-directory: .github/scripts
 
 
 
@@ -41,20 +41,20 @@ jobs:
         unzip cross-compiler-aarch64-poky-linux
         chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
         sudo apt-get install expect -y
-        chmod +x ../.github/scripts/install_compiler.sh
-        ../.github/scripts/install_compiler.sh
+        chmod +x ./install_compiler.sh
+        ./install_compiler.sh
 
-      working-directory: ./temp
+      working-directory: .github/scripts
 
     # - name: Install custom compiler
     #   run: |
-    #     ./scripts/install_compiler.sh
-    #   working-directory: .github
+    #     ./install_compiler.sh
+    #   working-directory: .github/scripts
     
     - name: Delete compiler
       run: |
-        rm -rf temp  # 删除安装文件
-      working-directory: .
+        rm -rf ╜╗▓ц▒р╥ы╣д╛▀  # 删除安装文件
+      working-directory: .github/scripts
 
     - name: Set up compiler in PATH
       run: |
