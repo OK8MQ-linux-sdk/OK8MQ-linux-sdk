@@ -65,7 +65,7 @@ jobs:
 
     - name: Set up compiler in PATH
       run: |
-        ls -l .
+        ls -l ./.github/scripts
         . .github/scripts/environment-setup-aarch64-poky-linux
         . environment-4gddr-setup-sourcetree
       working-directory: .
