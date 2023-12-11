@@ -64,3 +64,8 @@ jobs:
         . environment-4gddr-setup-sourcetree
         make
       working-directory: .
+
+    - name: Finished
+      run: |
+        echo "All tasks completed."
+        
