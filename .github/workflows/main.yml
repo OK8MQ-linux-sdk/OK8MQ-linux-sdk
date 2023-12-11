@@ -42,12 +42,15 @@ jobs:
         cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux
         unzip cross-compiler-aarch64-poky-linux
         chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        sudo apt-get update
         sudo apt-get install expect -y
+        sudo apt-get install openssh-server vim git fakeroot make automake \
+                         autoconf libtool libssl-dev bc dosfstools mtools parted iproute2 gcc kmod
         chmod +x ./install_compiler.sh
 
       working-directory: .github/scripts
 
-    - name: Exec install_compiler.sh
+    - name: Install the aarch64-poky-linux toolchain
       run: |
         ./install_compiler.sh
 
