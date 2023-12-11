@@ -63,6 +63,7 @@ jobs:
 
     - name: Set up compiler in PATH
       run: |
+        ls -l /opt/fsl-imx-xwayland/5.4-zeus/
         . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
         . environment-4gddr-setup-sourcetree
       working-directory: .
