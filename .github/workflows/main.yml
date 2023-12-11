@@ -31,11 +31,7 @@ jobs:
     #   run: mkdir -p temp
     #   working-directory: .github/scripts
 
-    - name: Check gcc version
-      run: |
-        gcc --version
-
-    - name: Download install_compiler.sh
+    - name: Download toolchain installation package and update apt packages
       run: |
         wget -q https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
         wget -q https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
@@ -56,12 +52,12 @@ jobs:
 
       working-directory: .github/scripts
     
-    - name: Delete compiler
+    - name: Delete Compiler Dir
       run: |
         rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
       working-directory: .github/scripts
 
-    - name: Set up compiler in PATH and build
+    - name: Set up compiler in PATH and Build
       run: |
         gcc --version
         . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
