@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on:
-      group: Default-Larger-Runners
+      group: Default
       labels: ubuntu-large-18.04
 
     steps:
