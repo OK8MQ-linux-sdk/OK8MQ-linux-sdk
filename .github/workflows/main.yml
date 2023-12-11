@@ -65,15 +65,6 @@ jobs:
         make
       working-directory: .
 
-    - name: Upload release asset
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: images/  # 替换为实际的镜像文件路径
-        asset_name: image.tar.gz  # 替换为实际的文件名
-        asset_content_type: application/gzip  # 根据文件类型设置适当的内容类型
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Finished
       run: |
