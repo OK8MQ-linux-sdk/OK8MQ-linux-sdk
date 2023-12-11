@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: List files in working directory
-      run: ls -R
-      working-directory: .github
 
     - name: Checkout code with submodules
       uses: actions/checkout@v2
       with:
         submodules: recursive  # 递归克隆子模块
+    
+    - name: List files in working directory
+      run: ls -R
+      working-directory: .github        
 
     # - name: Run submodule check
     #   run: |
