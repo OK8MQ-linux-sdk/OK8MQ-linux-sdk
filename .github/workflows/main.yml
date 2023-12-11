@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: List files in working directory
-      run: ls ~/ -la
+      run: ls ~/runners -la
 
     - name: Checkout code with submodules
       uses: actions/checkout@v2
