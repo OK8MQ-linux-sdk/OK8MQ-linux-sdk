@@ -50,7 +50,8 @@ jobs:
         sudo apt-get install expect -y
         chmod +x scripts/install_compiler.sh
         ./scripts/install_compiler.sh
-
+      working-directory: ./.github
+    
     - name: Delete compiler
       run: |
         rm -rf temp  # 删除安装文件
