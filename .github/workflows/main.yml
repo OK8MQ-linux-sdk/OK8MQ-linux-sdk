@@ -65,13 +65,13 @@ jobs:
 
     - name: Set up compiler in PATH
       run: |
-        ls -lh
         . .github/scripts/environment-setup-aarch64-poky-linux
-        . environment-4gddr-setup-sourcetree
       working-directory: .
 
     - name: Build
       run: |
+        . environment-4gddr-setup-sourcetree
+        ls -lh
         make
       working-directory: .
 
