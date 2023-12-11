@@ -58,13 +58,13 @@ jobs:
     
     - name: Delete compiler
       run: |
-        rm -rf ╜╗▓ц▒р╥ы╣д╛▀  # 删除安装文件
+        rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
       working-directory: .github/scripts
 
     - name: Set up compiler in PATH
       run: |
         ls -l /opt/fsl-imx-xwayland/5.4-zeus/
-        . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
+        . .github/scripts/environment-setup-aarch64-poky-linux
         . environment-4gddr-setup-sourcetree
       working-directory: .
 
