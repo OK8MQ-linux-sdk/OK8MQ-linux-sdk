@@ -8,7 +8,7 @@ spawn ./╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-tool
 expect "Enter target directory for SDK (default: /opt/fsl-imx-xwayland/5.4-zeus):"
 
 # 发送回车
-send ".\r"
+send "\r"
 
 # 再次匹配脚本输出中的关键字，这是要求输入 "y" 的提示信息
 expect -re "Proceed .*"

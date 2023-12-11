@@ -65,7 +65,7 @@ jobs:
 
     - name: Set up compiler in PATH and build
       run: |
-        . .github/scripts/environment-setup-aarch64-poky-linux
+        . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
         . environment-4gddr-setup-sourcetree
         ls -lh
         make
