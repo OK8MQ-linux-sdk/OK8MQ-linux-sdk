@@ -11,10 +11,10 @@ expect "Enter target directory for SDK (default: /opt/fsl-imx-xwayland/5.4-zeus)
 send ".\r"
 
 # 再次匹配脚本输出中的关键字，这是要求输入 "y" 的提示信息
-expect -re "If you continue, existing files will be overwritten! Proceed .*"
+expect -re "Proceed .*"
 
 # 发送 "y"
-send "y"
+send "y\r"
 
 # 等待命令执行完成
 expect eof
