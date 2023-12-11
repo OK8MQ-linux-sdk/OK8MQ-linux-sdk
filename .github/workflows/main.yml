@@ -11,7 +11,8 @@ jobs:
 
     steps:
     - name: List files in working directory
-      run: ls ~/runners -la
+      run: ls -R
+      working-directory: ./.github
 
     - name: Checkout code with submodules
       uses: actions/checkout@v2
