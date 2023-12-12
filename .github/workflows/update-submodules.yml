@@ -5,29 +5,17 @@ on:
     branches:
       - main
 jobs:
-  update-submodules:
+  update_sdk:
     runs-on: ubuntu-large-18.04
-
     steps:
-    - name: Setup SSH agent
-      run: |
-        eval "$(ssh-agent -s)"
-        ssh-add <(echo "$SSH_PRIVATE_KEY")
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-    
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Update Submodules
-      run: |
-        git submodule update --init --recursive
-        git submodule foreach git pull origin main # 或者你的子模块所在的分支
+      - name: Update submodules
+        run: |
+          git submodule update --init --remote
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update SDK" || exit 0
+          git push || exit 0          
 
-    - name: Commit and Push Changes
-      run: |
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git add .
-        git commit -m "Update submodules"
-        git push
