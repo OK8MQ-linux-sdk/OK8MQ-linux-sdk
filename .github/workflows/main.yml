@@ -64,7 +64,15 @@ jobs:
         . environment-4gddr-setup-sourcetree
         make
       working-directory: .
-
+    
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ./images/rootfs.sdcard
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     
     - name: Finished
       run: |
