@@ -11,11 +11,16 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    - name: Update Submodules
+    - name: List Submodules
       run: |
-        git submodule update --remote --merge
+        git config --file .gitmodules --get-regexp path | while read path_key path
+        do
+          submodule_path=${path//path /}
+          echo "Updating submodule: $submodule_path"
+          (cd $submodule_path && git pull origin main)
+        done
 
-        # Check if there are changes in submodules
+        # Commit and push changes if there are submodule updates
         if git diff-index --quiet HEAD --; then
           echo "No submodule changes detected."
         else
