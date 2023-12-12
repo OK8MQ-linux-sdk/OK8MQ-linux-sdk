@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        submodules: recursive  # 递归克隆子模块 
 
     - name: List Submodules
       run: |
