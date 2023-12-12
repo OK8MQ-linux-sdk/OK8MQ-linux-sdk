@@ -1,0 +1,26 @@
+name: Update Submodules
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update-submodules:
+    runs-on: ubuntu-large-18.04
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Update Submodules
+      run: |
+        git submodule update --init --recursive
+        git submodule foreach git pull origin main # 或者你的子模块所在的分支
+
+    - name: Commit and Push Changes
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add .
+        git commit -m "Update submodules"
+        git push
