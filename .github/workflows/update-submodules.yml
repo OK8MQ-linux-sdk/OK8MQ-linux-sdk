@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-large-18.04
 
     steps:
+    - name: Setup SSH agent
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add <(echo "$SSH_PRIVATE_KEY")
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    
     - name: Checkout Repository
       uses: actions/checkout@v2
 
