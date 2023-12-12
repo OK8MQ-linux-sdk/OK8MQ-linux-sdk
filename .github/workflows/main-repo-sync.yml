@@ -1,9 +1,11 @@
 name: Sync Submodules
 
-on:
-    schedule:
-      - cron: '0 0 * * *'  # 每天零点执行，可以根据需求调整
+# on:
+#     schedule:
+#       - cron: '0 0 * * *'  # 每天零点执行，可以根据需求调整
 
+on:
+    workflow_dispatch:      
 jobs:
   sync-submodules:
     runs-on: ubuntu-large-18.04
