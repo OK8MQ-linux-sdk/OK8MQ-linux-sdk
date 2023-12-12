@@ -65,12 +65,18 @@ jobs:
         make
       working-directory: .
     
+    - name: Split sdcard image
+      run: |
+        split -b 1g rootfs.sdcard rootfs.sdcard.
+      working-directory: ./images  
+
+
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ./images/rootfs.sdcard
+          ./images/rootfs.sdcard.*
         tag_name: test
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
