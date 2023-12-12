@@ -71,6 +71,7 @@ jobs:
       with:
         files: |
           ./images/rootfs.sdcard
+        tag_name: test
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     
