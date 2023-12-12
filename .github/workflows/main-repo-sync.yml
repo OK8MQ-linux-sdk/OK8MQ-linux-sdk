@@ -20,7 +20,7 @@ jobs:
           (cd $submodule_path && git pull origin main)
         done
 
-        # Commit and push changes if there are submodule updates
+        # Check if there are changes in submodules
         if git diff-index --quiet HEAD --; then
           echo "No submodule changes detected."
         else
