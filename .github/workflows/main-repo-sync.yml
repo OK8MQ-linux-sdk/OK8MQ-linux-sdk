@@ -14,20 +14,9 @@ jobs:
 
     - name: List Submodules
       run: |
-        git config --file .gitmodules --get-regexp path | while read path_key path
-        do
-          submodule_path=${path//path /}
-          echo "Updating submodule: $submodule_path"
-          (cd $submodule_path && git pull origin main)
-        done
-
-        # Check if there are changes in submodules
-        if git diff-index --quiet HEAD --; then
-          echo "No submodule changes detected."
-        else
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git add .
-          git commit -m "Update submodule references"
-          git push
-        fi
+        git submodule update --remote --merge
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply. github.com"
+        git add .
+        git commit -m "Sync submodules to latest"
+        git push
