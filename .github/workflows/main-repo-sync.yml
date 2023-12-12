@@ -1,0 +1,28 @@
+name: Sync Submodules
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天零点执行，可以根据需求调整
+
+jobs:
+  sync-submodules:
+    runs-on: ubuntu-large-18.04
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Update Submodules
+      run: |
+        git submodule update --remote --merge
+
+        # Check if there are changes in submodules
+        if git diff-index --quiet HEAD --; then
+          echo "No submodule changes detected."
+        else
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add .
+          git commit -m "Update submodule references"
+          git push
+        fi
