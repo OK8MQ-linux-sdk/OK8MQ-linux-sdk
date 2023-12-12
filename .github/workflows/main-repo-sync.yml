@@ -1,8 +1,7 @@
 name: Sync Submodules
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # 每天零点执行，可以根据需求调整
+    workflow_dispatch:  # 每天零点执行，可以根据需求调整
 
 jobs:
   sync-submodules:
