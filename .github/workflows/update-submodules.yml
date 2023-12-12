@@ -11,14 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Setup SSH Keys and known_hosts
+      - name: Create SSH key
         env:
-            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
         run: |
-            mkdir -p ~/.ssh
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+          echo "$SSH_PRIVATE_KEY" > private.key
+          sudo chmod 400 private.key
 
       - name: Update submodules
         run: |
