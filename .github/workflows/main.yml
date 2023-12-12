@@ -67,7 +67,7 @@ jobs:
     
     - name: Split sdcard image
       run: |
-        split -b 1g rootfs.sdcard rootfs.sdcard.
+        split -n 4 -d -a 1 rootfs.sdcard rootfs.sdcard.
       working-directory: ./images  
 
 
@@ -76,7 +76,10 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ./images/rootfs.sdcard.*
+          ./images/rootfs.sdcard.0
+          ./images/rootfs.sdcard.1
+          ./images/rootfs.sdcard.2
+          ./images/rootfs.sdcard.3
         tag_name: test
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
