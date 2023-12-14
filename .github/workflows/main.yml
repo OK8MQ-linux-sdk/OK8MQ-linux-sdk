@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Build OK8MQ-Linux-Jailhouse-Release
 
 on:
   workflow_run:
