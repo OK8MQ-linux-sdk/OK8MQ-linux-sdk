@@ -56,7 +56,7 @@ jobs:
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk.dtb
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk-root.dtb
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb
-        tag_name: Device Tree Blobs
+        tag_name: Device-Tree-Blobs
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     
