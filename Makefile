@@ -1,5 +1,5 @@
 all: \
-	linux linux_install \
+	linux linux_install linux_headers jailhouse\
 	cmd-examples cmd-examples_install	\
 	qt-examples qt-examples_install \
 	sdcard
@@ -38,6 +38,21 @@ linux:
 	mcopy -i $(SDK_PATH)/images/boot.img -s $(SDK_PATH)/images/boot/ok8mq-evk-rpmsg.dtb ::/ok8mq-evk-rpmsg.dtb
 	mcopy -i $(SDK_PATH)/images/boot.img -s $(SDK_PATH)/images/m4 ::/
 
+dtbs:
+	@echo ==========================================
+	@echo     Building and Copy the Device Tree
+	@echo ==========================================
+	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) $(LINUX_DEFCONFIG) LDFLAGS=
+	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) LDFLAGS= dtbs
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-dcss-mipi7.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-lcdif-mipi7.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-dcss-lt8912.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-lcdif-lt8912.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-dual-hdmi-lt8912.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-dual-hdmi-mipi7.dtb $(SDK_PATH)/images/boot
+	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm64/boot/dts/freescale/ok8mq-evk-rpmsg.dtb $(SDK_PATH)/images/boot
+  
 jailhouse:
 	@echo ======================================
 	@echo     Building and Copy the Jailhouse

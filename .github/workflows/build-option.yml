@@ -1,0 +1,83 @@
+name: Build OK8MQ-Linux-Jailhouse-Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on:
+      group: Default
+      labels: ubuntu-large-18.04
+
+    steps:
+    - name: Checkout code with submodules
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive  # 递归克隆子模块      
+
+    - name: Download toolchain installation package and update apt packages
+      run: |
+        wget -q https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-aa
+        wget -q https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ab
+        wget -q https://github.com/Comet959/-ok8mq-jailhouse-linux/releases/download/toolchain/aarch64-poky-linux-ac
+        cat aarch64-poky-linux-* > cross-compiler-aarch64-poky-linux
+        unzip cross-compiler-aarch64-poky-linux
+        chmod +x ╜╗▓ц▒р╥ы╣д╛▀/fsl-imx-xwayland-glibc-x86_64-meta-toolchain-qt5-aarch64-toolchain-5.4-zeus.sh
+        sudo apt-get update
+        sudo apt-get install expect -y
+        sudo apt-get install openssh-server vim git fakeroot make automake \
+                         autoconf libtool libssl-dev bc dosfstools mtools parted iproute2 gcc kmod -y
+        chmod +x ./install_compiler.sh
+      working-directory: .github/scripts
+
+    - name: Install the aarch64-poky-linux toolchain
+      run: |
+        ./install_compiler.sh
+
+      working-directory: .github/scripts
+    
+    - name: Delete Compiler Dir
+      run: |
+        rm -rf ╜╗▓ц▒р╥ы╣д╛▀ 
+      working-directory: .github/scripts
+
+    - name: Set up compiler in PATH and Build
+      run: |
+        gcc --version
+        . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
+        . environment-4gddr-setup-sourcetree
+        make jailhouse
+        make dtbs
+      working-directory: .
+    
+    - name: Split sdcard image
+      run: |
+        split -n 4 -d -a 1 rootfs.sdcard rootfs.sdcard.
+      working-directory: ./images  
+
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ./images/rootfs.sdcard.0
+          ./images/rootfs.sdcard.1
+          ./images/rootfs.sdcard.2
+          ./images/rootfs.sdcard.3
+          ./images/flash_sd_emmc_4g.bin
+          ./images/boot/Image
+          ./images/boot/ok8mq-evk.dtb
+          ./imx-jailhouse/configs/arm64/imx8mq-veth.cell
+          ./imx-jailhouse/configs/arm64/imx8mq-linux-demo.cell
+          ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk-root.dtb
+          ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb
+        tag_name: OK8MQ-Linux-Jailhouse-Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+    
+    - name: Finished
+      run: |
+        echo "All tasks completed."
+
+  # TODO: 
