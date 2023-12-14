@@ -38,6 +38,20 @@ linux:
 	mcopy -i $(SDK_PATH)/images/boot.img -s $(SDK_PATH)/images/boot/ok8mq-evk-rpmsg.dtb ::/ok8mq-evk-rpmsg.dtb
 	mcopy -i $(SDK_PATH)/images/boot.img -s $(SDK_PATH)/images/m4 ::/
 
+jailhouse:
+	@echo ======================================
+	@echo     Building and Copy the Jailhouse
+	@echo ======================================
+	cd imx-jailhouse && make ARCH=arm64 KDIR=$(SDK_PATH)/OK8MQ-linux-kernel CROSS_COMPILE=aarch64-poky-linux- CC="aarch64-poky-linux-gcc --sysroot=/opt/fsl-imx-xwayland/5.4-zeus/sysroots/aarch64-poky-linux" && cd .. && cp -rf imx-jailhouse $(DESTDIR)/home/root/imx_jailhouse && cp $(SDK_PATH)/OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb $(DESTDIR)/home/root && cp init/rootfs.cpio.gz $(DESTDIR)/home/root/
+
+linux_headers:
+	@echo =========================================
+	@echo     Building the Linux Kernel Headers
+	@echo =========================================
+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) $(LINUX_DEFCONFIG) LDFLAGS=
+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) LDFLAGS=
+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) LDFLAGS= headers_install INSTALL_HDR_PATH=$(DESTDIR)/usr
+
 linux_install: 
 	@echo ===================================
 	@echo     Installing the Linux Kernel
