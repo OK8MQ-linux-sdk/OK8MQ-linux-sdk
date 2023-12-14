@@ -87,7 +87,7 @@ jobs:
           ./imx-jailhouse/configs/arm64/imx8mq-linux-demo.cell
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk-root.dtb
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb
-        tag_name: test
+        tag_name: OK8MQ-Linux-Jailhouse-Release
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     
