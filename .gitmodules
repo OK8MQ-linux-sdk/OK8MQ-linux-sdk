@@ -13,3 +13,7 @@
 [submodule "OK8MQ-linux-fs"]
 	path = OK8MQ-linux-fs
 	url = git@github.com:OK8MQ-linux-sdk/OK8MQ-linux-fs.git
+[submodule "imx-jailhouse"]
+	path = imx-jailhouse
+	url = git@github.com:OK8MQ-linux-sdk/imx-jailhouse.git
+	branch = lf-5.15.32_2.0.0
