@@ -43,10 +43,8 @@ jobs:
 
     - name: Set up compiler in PATH and Build
       run: |
-        gcc --version
         . /opt/fsl-imx-xwayland/5.4-zeus/environment-setup-aarch64-poky-linux
         . environment-4gddr-setup-sourcetree
-        # make jailhouse
         make dtbs
       working-directory: .
 
