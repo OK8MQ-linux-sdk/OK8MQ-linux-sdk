@@ -1,0 +1,1 @@
+2023-12-15: OK8MQ-linux-kernel - update dts makefile.
