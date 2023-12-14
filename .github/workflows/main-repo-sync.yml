@@ -35,7 +35,7 @@ jobs:
         git commit -m "Update submodules at $(date "+DATE: %Y-%m-%d TIME: %H:%M:%S")"
       if: ${{ steps.status.outputs.status }}
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@v0.7.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
