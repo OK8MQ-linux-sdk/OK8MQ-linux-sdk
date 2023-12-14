@@ -1,4 +1,4 @@
-name: Build OK8MQ-Linux-Jailhouse-Release
+name: Build Option for Jailhouse and DTBs
 
 on:
   workflow_dispatch:
