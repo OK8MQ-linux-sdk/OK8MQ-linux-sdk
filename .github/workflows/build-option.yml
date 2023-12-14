@@ -1,4 +1,4 @@
-name: Build Option for Jailhouse and DTBs
+name: Build Jailhouse and DTBs
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ jobs:
     - name: Checkout code with submodules
       uses: actions/checkout@v3
       with:
-        submodules: recursive  # 递归克隆子模块      
+        submodules: recursive    
 
     - name: Download toolchain installation package and update apt packages
       run: |
@@ -49,24 +49,12 @@ jobs:
         make jailhouse
         make dtbs
       working-directory: .
-    
-    - name: Split sdcard image
-      run: |
-        split -n 4 -d -a 1 rootfs.sdcard rootfs.sdcard.
-      working-directory: ./images  
-
 
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          ./images/rootfs.sdcard.0
-          ./images/rootfs.sdcard.1
-          ./images/rootfs.sdcard.2
-          ./images/rootfs.sdcard.3
-          ./images/flash_sd_emmc_4g.bin
-          ./images/boot/Image
           ./images/boot/ok8mq-evk.dtb
           ./imx-jailhouse/configs/arm64/imx8mq-veth.cell
           ./imx-jailhouse/configs/arm64/imx8mq-linux-demo.cell
@@ -79,5 +67,3 @@ jobs:
     - name: Finished
       run: |
         echo "All tasks completed."
-
-  # TODO: 
