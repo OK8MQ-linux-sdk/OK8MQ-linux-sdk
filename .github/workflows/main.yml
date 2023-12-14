@@ -93,7 +93,6 @@ jobs:
     
     - name: Finished
       run: |
-        ls -lR ./images
         echo "All tasks completed."
 
   # TODO: 
