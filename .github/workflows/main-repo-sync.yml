@@ -1,26 +1,42 @@
-name: Sync Submodules
-
-# on:
-#     schedule:
-#       - cron: '0 0 * * *'  # 每天零点执行，可以根据需求调整
-
+name: Update submodules
 on:
-    workflow_dispatch:      
+  schedule:
+    - cron:  '0 * * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  sync-submodules:
-    runs-on: ubuntu-latest
-
+  update_submodules:
+    name: Update submodules
+    runs-on: ubuntu-large-18.04
+    env:
+      TZ: "Asia/Shanghai"
+    if: contains(github.event.head_commit.message, '[ci skip]') == false
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       with:
-        submodules: recursive  # 递归克隆子模块 
-
-    - name: List Submodules
+        submodules: recursive
+    - name: Update submodules
+      id: update
+      run: git submodule update --remote --recursive 
+    - name: Run git status
+      id: status
+      run: echo "::set-output name=status::$(git status -s)"
+    - name: Add and commit files
       run: |
-        git submodule update --remote --merge
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor }}@users.noreply. github.com"
         git add .
-        git commit -m "Sync submodules to latest"
-        git push
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Update submodules at $(date "+DATE: %Y-%m-%d TIME: %H:%M:%S")"
+      if: ${{ steps.status.outputs.status }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+      if: ${{ steps.status.outputs.status && github.event_name == 'push' }}
