@@ -80,6 +80,13 @@ jobs:
           ./images/rootfs.sdcard.1
           ./images/rootfs.sdcard.2
           ./images/rootfs.sdcard.3
+          ./images/flash_sd_emmc_4g.bin
+          ./images/boot/Image
+          ./images/boot/ok8mq-evk.dtb
+          ./imx-jailhouse/configs/arm64/imx8mq-veth.cell
+          ./imx-jailhouse/configs/arm64/imx8mq-linux-demo.cell
+          ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk-root.dtb
+          ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb
         tag_name: test
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
