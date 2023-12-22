@@ -90,6 +90,7 @@ jobs:
           ./images/boot/ok8mq-evk.dtb
           ./imx-jailhouse/configs/arm64/imx8mq-veth.cell
           ./imx-jailhouse/configs/arm64/imx8mq-linux-demo.cell
+          ./imx-jailhouse/configs/arm64/imx8mq-gic-demo.cell
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/ok8mq-evk-root.dtb
           ./OK8MQ-linux-kernel/arch/arm64/boot/dts/freescale/imx8mq-evk-inmate.dtb
         tag_name: OK8MQ-Linux-Jailhouse-Release
