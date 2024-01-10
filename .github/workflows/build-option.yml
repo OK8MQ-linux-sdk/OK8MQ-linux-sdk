@@ -5,9 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on:
-      group: Default
-      labels: ubuntu-large-18.04
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code with submodules
