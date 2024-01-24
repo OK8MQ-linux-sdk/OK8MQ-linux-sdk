@@ -1,13 +1,13 @@
 name: Update submodules
-on:
-  schedule:
-    - cron:  '0 * * * *'
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
+# on:
+#   schedule:
+#     - cron:  '0 * * * *'
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+#     branches:
       - main
 
 jobs:
