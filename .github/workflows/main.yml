@@ -1,11 +1,11 @@
 name: Build OK8MQ-Linux-Jailhouse-Release
 
-on:
-  workflow_run:
-    workflows:
-      - "Update Submodules"
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows:
+#       - "Update Submodules"
+#     types:
+#       - completed
   # push:
   #   branches:
   #     - main
